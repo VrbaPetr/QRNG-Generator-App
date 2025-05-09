@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.3
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: ZyaCIqKVzxjset46iL
+      MYSQL_DATABASE: qrng_generated_results
+      MYSQL_USER: main_user
+      MYSQL_PASSWORD: r8yjIPuM1hszPKPGPJ
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_czech_ci
