@@ -1,19 +1,30 @@
-import { RecordItem } from "@/utils/app-types";
+import { RecordItem, UserRoles } from "@/utils/app-types";
 import { CiClock1 } from "react-icons/ci";
+import { ExportButton } from "@/components/ExportButton";
 
-export function HistoryComponent({ history }: { history: RecordItem[] }) {
+export function HistoryComponent({
+  history,
+  userRole,
+}: {
+  history: RecordItem[];
+  userRole: UserRoles;
+}) {
   return (
     <div className="p-4 md:p-6 bg-white rounded-sm border border-gray-200">
-      <h3 className="text-lg font-semibold text-gray-800 mb-4">
-        Historie otázek
-      </h3>
+      <div className="flex justify-between items-center mb-4">
+        <h3 className="text-lg font-semibold text-gray-800">Historie otázek</h3>
+
+        <ExportButton
+          data={history}
+          filename="historie_otazek"
+          showExportButton={userRole === "ST" && history.length > 0}
+        />
+      </div>
 
       {history.length > 0 ? (
         <div className="overflow-x-auto">
-          {/* Desktop and Tablet View */}
           <div className="hidden sm:block">
             <div className="overflow-hidden border border-gray-200 rounded-lg min-w-full">
-              {/* Table Header */}
               <div className="grid grid-cols-6 bg-gray-50 p-3 border-b border-gray-200 font-medium text-gray-600 text-sm">
                 <div>Číslo otázky</div>
                 <div>Student</div>
@@ -23,7 +34,6 @@ export function HistoryComponent({ history }: { history: RecordItem[] }) {
                 <div>Datum</div>
               </div>
 
-              {/* Table Body */}
               <div className="divide-y divide-gray-200">
                 {history.map((item, index) => (
                   <div
@@ -51,7 +61,6 @@ export function HistoryComponent({ history }: { history: RecordItem[] }) {
             </div>
           </div>
 
-          {/* Mobile View */}
           <div className="sm:hidden space-y-4">
             {history.map((item, index) => (
               <div

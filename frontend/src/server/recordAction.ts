@@ -18,15 +18,23 @@ export async function getRecords() {
 }
 
 export async function insertRecord(form: FormData) {
+  const poolExcludedRaw = form.get("pool_excluded");
+  const poolExcluded = poolExcludedRaw ? String(poolExcludedRaw) : "0";
+
+  const randomNumber = Math.floor(
+    Math.random() * Number(form.get("pool_range"))
+  );
+
   const payload = {
     examiner: form.get("examiner"),
     student: form.get("student"),
     program: form.get("program"),
     exam: form.get("exam"),
+    result: randomNumber,
     pool_range: Number(form.get("pool_range")),
-    pool_excluded: form.get("pool_excluded"),
-    result: Number(form.get("result")),
+    pool_excluded: poolExcluded,
   };
+  console.log(payload);
 
   const res = await fetch(`${url}/records/insert_record`, {
     method: "POST",
@@ -34,12 +42,14 @@ export async function insertRecord(form: FormData) {
     body: JSON.stringify(payload),
   });
 
-  console.log("INSERTED");
   if (!res.ok) throw new Error("Insert failed");
+
+  const data = await res.json();
+  console.log("INSERTED", data);
 
   revalidatePath("/dashboard");
 
-  return await res.json();
+  return data;
 }
 
 export async function getRecordById(id: number) {
