@@ -14,7 +14,6 @@
 This document provides an overview of the main development repository for the QRNG project, including a breakdown of its core components and instructions for execution using Docker Compose.
 
 **PROD VERSION EXPECT COMMUNICATION WITH QRNG. THE QRNG CARD MUST ME AVAILABLE TO RUN THIS PROJECT**
-
 ---
 
 ## Repository Structure
@@ -24,8 +23,8 @@ The repository is composed of the following principal components:
 - **API (`backend/`)**: A Node.js-based service that exposes endpoints for communication with the QRNG card and the underlying database.
 - **Database (`database/`)**: A MySQL-based relational database initialized using SQL scripts to support the storage and retrieval of QRNG data.
 - **Frontend (`frontend/`)**: A web interface built using modern web technologies, designed to interact with the API and provide user-facing features.
+- **QRNG Driver (`driver/`)**: A python based interface for communication with QRNG hardware and required drivers.
 
-**This branch doesn't contain QRNG Driver - see saparate service or main branch**
 
 ---
 
