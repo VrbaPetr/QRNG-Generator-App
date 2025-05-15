@@ -50,7 +50,11 @@ export async function getCode(value: string) {
 }
 
 export async function deactivateCode(value: string) {
+  console.log("Deactivating code:", value);
   await fetch(`${url}/temp/deactivate/${value}`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
     method: "GET",
   });
 }

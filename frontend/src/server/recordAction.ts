@@ -21,16 +21,12 @@ export async function insertRecord(form: FormData) {
   const poolExcludedRaw = form.get("pool_excluded");
   const poolExcluded = poolExcludedRaw ? String(poolExcludedRaw) : "0";
 
-  const randomNumber = Math.floor(
-    Math.random() * Number(form.get("pool_range"))
-  );
-
   const payload = {
     examiner: form.get("examiner"),
     student: form.get("student"),
     program: form.get("program"),
     exam: form.get("exam"),
-    result: randomNumber,
+
     pool_range: Number(form.get("pool_range")),
     pool_excluded: poolExcluded,
   };
