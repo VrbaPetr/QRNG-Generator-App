@@ -1,0 +1,35 @@
+services:
+  qrng-db:
+    image: mysql:8.3
+    container_name: qrng-db
+    environment:
+      MYSQL_ROOT_PASSWORD: ZyaCIqKVzxjset46iL
+      MYSQL_DATABASE: qrng_generated_results
+      MYSQL_USER: main_user
+      MYSQL_PASSWORD: r8yjIPuM1hszPKPGPJ
+    ports:
+      - "3336:3336"
+    volumes:
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_czech_ci
+  
+  qrng-api:
+    build: ./backend
+    container_name: qrng-api
+    env_file:
+      - ./backend/.env
+    ports:
+      - "3000:3000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - qrng-db
+    volumes:
+      - ./backend:/api
+  qrng-frontend:
+    build: ./frontend
+    container_name: qrng-frontend
+    ports:
+      - "3003:3000"
+    environment:
+      - NODE_ENV=production
