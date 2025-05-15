@@ -1,4 +1,6 @@
-# QRNG Database – Deployment and Structure Overview
+![image](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)
+
+## QRNG Database
 
 This document outlines the essential information related to the deployment and structure of the database used in the QRNG project.
 
