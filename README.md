@@ -1,5 +1,7 @@
-# QRNG API – Startup and Endpoint Documentation
+![image](https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![image](https://img.shields.io/badge/Express%20js-000000?style=for-the-badge&logo=express&logoColor=white)
 
+## QRNG API
 This document provides instructions for deploying the API server designed to interface with the QRNG card, as well as an overview of the available HTTP endpoints.
 
 ---
@@ -42,7 +44,7 @@ Used to verify that the API server is operational.
 | Path         | Description                          |
 |--------------|--------------------------------------|
 | `/records`   | Endpoints for handling QRNG records  |
-| `/sync_code` | Endpoints for code synchronization   |
+| `/temp`      | Endpoints for code synchronization   |
 | `/logs`      | Endpoints for accessing logs         |
 | `/access`    | Endpoints for authentication         |
 
